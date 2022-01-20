@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech Fashion</title>
+
+    {% include 'meta-data.html' %}
+    <!-- Trang nạp tiền vào tài khoản -->
+</head>
+<body>
+    {% include 'homepage/navigation.html' %}
+    <div class="d-flex flex-column justify-content-start bg-dark h-750px pt-150px">
+        <h3 class="text-center text-light font-text">Nạp tiền vào tài khoản của bạn để mua sắm thả ga</h3>
+        <h4 class="text-center text-light font-text">Số dư hiện tại: {{ found_user.balance }}$</h4>
+        <div class="w-25 container">
+            <form method = 'POST'>
+                <div class="form-row d-flex justify-content-center pt-4">
+                    <div class="form-group col-md-12">
+                        <label for="inputBalance" class="text-light font-text font-weight-bold">Nhập số tiền</label>
+                        <input type="number" name = 'money' class="form-control" id="inputBalance" placeholder="Số tiền" required>
+                    </div>
+                </div>
+                <div class="form-group mt-4 d-flex justify-content-center">
+                    <div style="margin-right: 10px">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+                            Nạp tiền
+                        </button>
+                    </div>
+                            
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Xác nhập nạp tiền vào tài khoản</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    Thực hiện giao dịch?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-dark" data-dismiss="modal">Đóng</button>
+                                    <button type="submit" class="btn btn-dark">Nạp</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+    
+                    <!-- Back -->
+                    <div>
+                        <a class="btn btn-secondary" href="{{ url_for('user') }}" role="button">Trở về</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

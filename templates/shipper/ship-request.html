@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech Fashion</title>
+
+    {% include 'meta-data.html' %}
+    <!-- Trang các yêu cầu -->
+</head>
+<body>
+    {% include 'homepage/navigation.html' %}
+    {% if template == 1 %}
+    <div class = "bg-jumbotron d-flex flex-column justify-content-center" style="padding-top: 100px; padding-bottom: 30px; padding-left: 100px; padding-right: 100px">
+        {% for order in all_order %}
+        <div class="w-50 container border border-secondary rounded mb-5 py-5">
+            <div class="d-flex justify-content-center">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active font-text" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Đơn ngày {{ order.order_time.day }}/{{ order.order_time.month }}/{{ order.order_time.year }}</a>
+                    </li>
+                </ul>
+            </div>    
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="d-flex justify-content-center my-3">
+                        <h2 class="font-text font-weight-bold">Thông tin đơn hàng</h2>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div>
+                            <div>
+                                <p class="font-text">Tổng sản phẩm: {{ order.order_fee }}$</p>
+                                <p class="font-text">Chi phí vận chuyển: {{ order.ship_fee }}$</p>
+                                <p class="font-text">Tổng đơn hàng: {{ order.order_fee + order.ship_fee }}$</p>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                                <div style="margin-right: 10px">
+                                    <a href="{{ url_for('detail_request', order_id = order.id) }}" class="btn btn-primary btn-sm font-text" role="button">Chi tiết đơn hàng</a>
+                                </div>
+                                <div>
+                                    <a href="{{ url_for('shipper_accepted_order', order_id = order.id) }}" class="btn btn-primary btn-sm font-text" role="button">Nhận đơn</a>                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="d-flex justify-content-center">
+            <a href="{{ url_for('shipper') }}" class="btn btn-primary btn-lg font-text" role="button">Trở về</a>
+        </div>
+    </div>
+    {% elif template == 0 %}
+    <div class="bg-dark" style="height: 700px; padding-top: 100px">
+        <h1 class="font-text text-light text-center">Hiện tại chưa có yêu cầu nào</h1>
+        <h1 class="font-text text-light text-center">Vui lòng chờ</h1>
+        <div class="d-flex justify-content-center" style="margin-top: 100px">
+            <a href="{{ url_for('shipper') }}" class="btn btn-primary btn-lg font-text" role="button">Trở về</a>
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>

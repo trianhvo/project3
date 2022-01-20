@@ -1,0 +1,86 @@
+.font-logo{
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+.font-text{
+    font-family: 'Varela Round', sans-serif;
+}
+
+.bg-jumbotron{
+    background-color: #E9ECEF;
+}
+
+.h-40px{
+    height: 40px;
+}
+
+.h-250px{
+    height: 250px;
+}
+
+.h-400px{
+    height: 400px;
+}
+
+.h-600px{
+    height: 600px;
+}
+
+.h-617px{
+    height: 617px;
+}
+
+.h-750px{
+    height: 750px;
+}
+
+.w-20p{
+    width: 20.5%;
+}
+
+.pt-150px{
+    padding-top: 150px;
+}
+
+/* User/Shipper */
+.container {
+    position: relative;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  max-width: 230px;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #6C757D;
+  color: #F8F9FA;
+  font-size: 18px;
+  padding: 16px 32px;
+  font-family: 'Varela Round', sans-serif;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech Fashion</title>
+
+    {% include 'meta-data.html' %}
+    <!-- Trang hiển thị danh mục sản phẩm -->
+</head>
+<body>
+    {% include 'homepage/navigation.html' %}
+    <div class = "bg-jumbotron d-flex flex-wrap justify-content-around" style="padding: 100px">
+        {% for product in all_product %}
+            <div class="bg-dark card text-light my-3" style="height: 440px; width: 15rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                <img class="card-img-top border border-secondary" style="height: 230px" src="{{ product.image }}" alt="Card image cap">
+                <div class="card-body bg-jumbotron border border-secondary">
+                    <h5 class="card-title font-text text-dark" style="font-size: 90%">{{ product.name }}</h5>
+                    <P class="card-text font-text text-dark" style="font-size: 70%">Loại: {{ product.product_type }}</P>
+                    <p class="card-text font-text text-dark" style="font-size: 70%">Thương hiệu: {{ product.place }}</p>
+                    <p class="card-text font-text text-dark" style="font-size: 70%">Giá: {{ product.price }}$</p>
+                    <div class="d-flex flex-wrap justify-content-around">
+                        {% if product.status == "Còn hàng" %}
+                            <a href="{{ url_for('add_order', product_id=product.id) }}" class="btn btn-sm btn-dark font-text" style="font-size: 60%">Thêm vào giỏ hàng</a>
+                        {% else %}
+                            <button type="button" class="btn btn-sm btn-dark font-text" style="font-size: 60%" disabled>Hết hàng</button>
+                        {% endif %}
+                            <a href="{{ url_for('detail', product_id=product.id) }}" class="btn btn-sm btn-dark font-text" style="font-size: 60%">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="bg-dark text-center text-light font-text" style="height: 50px; padding-top: 15px;">Sản phẩm Project 3</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech Fashion</title>
+
+    {% include 'meta-data.html' %}
+    <!-- Hiển thị 2 trạng thái đơn đã nhận -->
+</head>
+<body>
+    {% include 'homepage/navigation.html' %}
+    <div class="bg-dark h-750px d-flex justify-content-center" style="padding-top: 200px">
+        <div>
+            <a href="{{ url_for('ship_status', status='Shipper đã nhận đơn, đang tiến hành lấy hàng') }}" class="btn btn-primary btn-lg font-text" role="button">Các đơn chưa giao</a>
+            <br><br>
+            <a href="{{ url_for('ship_status', status='Shipper đã nhận hàng, bắt đầu tiến hành vận chuyển') }}" class="btn btn-primary btn-lg font-text" role="button">Các đơn đã giao</a>
+            <br><br>
+            <a href="{{ url_for('shipper') }}" class="btn btn-primary btn-lg font-text" role="button">Trở về</a>
+        </div>
+    </div>
+</body>
+</html>

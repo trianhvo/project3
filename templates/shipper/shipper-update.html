@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech Fashion</title>
+    {% include 'meta-data.html' %} 
+
+
+    <!-- Trang cập nhật thông tin cá nhân cho Shipper -->
+</head>
+<body>
+    {% include 'homepage/navigation.html' %}
+
+    <div class="bg-dark h-750px">
+        <br><br><br>
+        <h4 class="text-center text-light font-text">Cập nhật thông tin</h4>
+        <h3 class="text-center text-light font-logo"><i class="fas fa-shoe-prints text-light mr-2"></i>Tech Fashion</h3>
+        <br>
+        <div class="container bg-secondary w-50 py-4 border border-dark rounded">
+            <form method = 'POST'>
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label for="inputFullname" class="text-light font-text font-weight-bold">Tên đầy đủ</label>
+                        <input type="text" name = 'fullname' class="form-control" id="inputFullname" value="{{ update_shipper.fullname }} " readonly>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="inputPhone" class="text-light font-text font-weight-bold">Số điện thoại</label>
+                        <input type="text" name = 'phone' class="form-control" id="inputPhone" value=" {{ update_shipper.phone }} " required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail" class="text-light font-text font-weight-bold">Email</label>
+                        <input type="email" name = 'email' class="form-control" id="inputEmail" value="{{ update_shipper.email }}" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputAddress" class="text-light font-text font-weight-bold">Chứng minh thư nhân dân</label>
+                        <input type="text" name = 'address' class="form-control" id="inputAddress" value="{{ update_shipper.id_person }}" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label for="inputUsername" class="text-light font-text font-weight-bold">Tên tài khoản</label>
+                        <input type="text" name = 'username' class="form-control" id="inputUsername" value="{{ update_shipper.username }}" readonly>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="inputPassword" class="text-light font-text font-weight-bold">Mật khẩu</label>
+                        <input type="password" name = 'password' class="form-control" id="inputPassword" value="{{ update_shipper.password }}" required>
+                    </div>
+                </div>
+                <div class="form-group mt-4 d-flex">
+                    <div style="margin-right: 10px">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+                            Cập nhật
+                        </button>
+                    </div>
+                            
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận cập nhật thông tin tài khoản</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Bạn có chắc muốn thay đổi thông tin?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-dark" data-dismiss="modal">Đóng</button>
+                                        <button type="submit" class="btn btn-dark">Cập nhật</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- Back -->
+                    <div>
+                        <a class="btn btn-dark" href="{{ url_for('shipper_information') }}" role="button">Trở về</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="bg-dark text-center text-light font-text" style="height: 50px; padding-top: 15px;">Sản phẩm Project 3</div>
+
+    <!-- <h1>Cập nhật thông tin</h1>
+    <form method='post'>
+        <label>Tên</label>
+        <br>
+        <input type = 'text' name = 'name' value = '{{update_shipper.fullname}}' readonly>
+        <br><br>
+        <label>Số điện thoại</label>
+        <br>
+        <input type = 'text' name = 'phone' value = '{{update_shipper.phone}}'>
+        <br><br>
+        <label>Email</label>
+        <br>
+        <input type = 'email' name = 'email' size="30" value = '{{update_shipper.email}}'>
+        <br><br>
+        <label>Chứng minh thư nhân dân</label>
+        <br>
+        <input type = 'number' name = 'id_person' value = '{{update_shipper.id_person}}' readonly>
+        <br><br>
+        <label>Tên tài khoản</label>
+        <br>
+        <input type="text" name="fullname" value = '{{update_shipper.username}}' readonly>
+        <br><br>
+        <label>Mật khẩu</label>
+        <br>
+        <input type="password" name="password" value = '{{update_shipper.password}}'>
+        <br><br>
+        <br>
+        <input type = 'submit' value = "Cập nhật"> -->
+</body>
+</html>

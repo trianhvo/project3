@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech Fashion</title>
+
+    {% include 'meta-data.html' %}
+    <!-- Trang hiển trị khi Shipper thêm đồ vào giỏ -->
+</head>
+<body>
+    {% include 'homepage/navigation.html' %}
+    <div class="bg-dark" style="height: 700px; padding-top: 100px">
+        <h1 class="font-text text-light text-center">Bạn vui lòng đăng xuất và sử dụng tài khoản khách hàng để giao dịch</h1>
+        <div class="d-flex justify-content-center mt-5">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary btn-lg font-text" role="button">Trở về</a>
+        </div>
+    </div>
+    <div class="bg-dark text-center text-light font-text" style="height: 50px">Sản phẩm Project 3</div>
+</body>
+</html>

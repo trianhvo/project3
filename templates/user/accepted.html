@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech Fashion</title>
+
+    {% include 'meta-data.html' %}
+    <!-- Trang thông báo sau khi User gửi yêu cầu đơn hàng -->
+</head>
+<body>
+    {% include 'homepage/navigation.html' %}
+    {% if template == 1 %}
+        <div class="bg-dark" style="height: 700px; padding-top: 100px">
+            <h1 class="font-text text-light text-center">Đã gửi yêu cầu đơn hàng</h1>
+            <h1 class="font-text text-light text-center">Hãy quay lại tiếp tục mua hàng</h1>
+            <div class="d-flex justify-content-center" style="margin-top: 100px; padding-right: 50px">
+                <a href="{{ url_for('user') }}" class="btn btn-primary btn-lg font-text" role="button">Trở về</a>
+            </div>
+        </div>
+    {% elif template == 0 %}
+        <div class="bg-dark" style="height: 700px; padding-top: 100px">
+            <h1 class="font-text text-light text-center">Số dư của bạn không đủ để thanh toán cho đơn hàng này</h1>
+            <div class="d-flex justify-content-center" style="margin-top: 100px; padding-right: 50px">
+                <a href="{{ url_for('add_money') }}" class="btn btn-primary btn-lg font-text" role="button">Nạp tiền vào tài khoảnề</a>
+            </div>
+            <div class="d-flex justify-content-center" style="margin-top: 100px; padding-right: 50px">
+                <a href="{{ url_for('user') }}" class="btn btn-primary btn-lg font-text" role="button">Trở về</a>
+            </div>
+        </div>
+    {% endif %}
+</body>
+</html>

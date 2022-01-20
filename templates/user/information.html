@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech Fashion</title>
+    
+    {% include 'meta-data.html' %} 
+
+    <!-- Trang thông tin cá nhân của User -->
+</head>
+<body>
+    {% include 'homepage/navigation.html' %}
+
+    <div class="bg-dark" style="height:700px; padding-top: 100px">
+        <h4 class="text-center text-light font-text">Thông tin cá nhân</h4>
+        <h3 class="text-center text-light font-logo"><i class="fas fa-shoe-prints text-light mr-2"></i>Tech Fashion</h3>
+        <br><br>
+        <div class="container bg-secondary w-25 py-4 border rounded text-light">
+            <p class="font-text">Tên đầy đủ : {{ found_user.fullname }}</p>
+            <p class="font-text">Số điện thoại : {{ found_user.phone }}</p>
+            <p class="font-text">Email : {{ found_user.email }}</p>
+            <p class="font-text">Địa chỉ : {{ found_user.address }}</p>
+            <p class="font-text">Số dư: {{ found_user.balance }}$</p>
+  
+            <div class="form-group mt-4 d-flex justify-content-around">
+                <div>
+                    <a class="btn btn-dark" href="{{ url_for('user_update') }}" role="button">Cập nhật thông tin</a>
+                </div>
+                <!-- Back -->
+                <div>
+                    <a class="btn btn-dark" href="{{ url_for('user') }}" role="button">Trở về</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

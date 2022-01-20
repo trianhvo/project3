@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech Fashion</title>
+
+    {% include 'meta-data.html' %}    
+    <!-- Giao diện chính của Shipper -->
+</head>
+<body>
+    {% include 'homepage/navigation.html' %}
+    <div class="d-flex justify-content-around bg-dark h-400px pt-150px">
+        <div class="w-20p container">
+            <img src="../static/images/icon-shipper/history.png" class="image">
+            <div class="middle">
+                <a class="text btn btn-sm active" href="{{ url_for('shipped_history') }}">Lịch sử ship đơn</a>
+            </div>
+        </div>
+        <div class="w-20p container">
+            <img src="../static/images/icon-shipper/request.png" class="image">
+            <div class="middle">
+                <a class="text btn btn-sm active" href="{{ url_for('ship_request') }}">Đơn chưa nhận</a>
+            </div>
+        </div>
+        <div class="w-20p container">
+            <img src="../static/images/icon-shipper/now.png" class="image">
+            <div class="middle">
+                <a class="text btn btn-sm active" href="{{ url_for('ship_status_select') }}">Đơn hiện tại</a>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-around bg-dark" style="height: 350px">
+        <a href="{{ url_for('shipped_history') }}" class="btn btn-lg active w-20p" role="button" aria-pressed="true" style="height: 50px"><p class="text-light font-weight-bold font-text">Lịch sử ship đơn</p></a>
+        <a href="{{ url_for('ship_request') }}" class="btn btn-lg active w-20p" role="button" aria-pressed="true" style="height: 50px"><p class="text-light font-weight-bold font-text">Các đơn hàng chưa được nhận</p></a>
+        <a href="{{ url_for('ship_status_select') }}" class="btn btn-lg active w-20p" role="button" aria-pressed="true" style="height: 50px"><p class="text-light font-weight-bold font-text">Đơn hàng hiện tại</p></a>
+    </div>
+    <div class="bg-dark text-center text-light font-text" style="height: 50px; padding-top: 15px;">Sản phẩm Project 3</div>
+</body>
+</html>

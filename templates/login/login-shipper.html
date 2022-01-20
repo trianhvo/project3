@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech Fashion</title>
+
+    {% include 'meta-data.html' %}
+    <!-- Trang đăng nhập cho Shipper -->
+</head>
+<body>
+    {% include 'homepage/navigation.html' %}
+    <div class="bg-dark h-600px" style="padding-top: 100px">
+        <h4 class="text-center text-light font-text">Đăng nhập để tham gia mạng lưới Shipper</h4>
+        <h3 class="text-center text-light font-logo"><i class="fas fa-shoe-prints text-light mr-2"></i>Tech Fashion</h3>
+        <br>
+        <div class="container bg-secondary w-25 py-4 border border-dark rounded">
+            <form method = 'POST'>
+                <div class="form-group">
+                    <label for="inputUsername" class="col-sm-6 col-form-label font-weight-bold text-light font-text">Tên tài khoản</label>
+                    <div class="col-sm-12">
+                        <input type="text" name = username class="form-control" id="inputUsername" placeholder="Tên tài khoản">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-sm-6 col-form-label font-weight-bold text-light font-text">Mật khẩu</label>
+                    <div class="col-sm-12">
+                        <input type="password" name = password class="form-control" id="inputPassword" placeholder="Mật khẩu">
+                    </div>
+                </div>
+                <div class="form-group mt-5 d-flex">
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-dark btn-sm font-text">Đăng nhập</button>
+                    </div>
+                    <div class="col-sm-5">
+                        <a href="{{ url_for('signup_shipper') }}" class="font-text text-light">Đăng ký</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="form-group d-flex justify-content-center pt-3">
+            <div class="col-sm-1.6">
+                <a class="btn btn-dark btn-sm font-text" href="{{ url_for('index') }}" role="button">Trở về Trang chủ</a>
+            </div>
+        </div>
+    </div>
+    <div class="bg-dark text-center text-light font-text" style="height: 50px">Sản phẩm Project 3</div>
+</body>
+</html>

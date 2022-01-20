@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech Fashion</title>
+
+    {% include 'meta-data.html' %}
+    <!-- Trang hiển thị giỏ hàng -->
+</head>
+<body>
+    {% include 'homepage/navigation.html' %}
+    {% if template == 1 %}
+        <div class = "bg-jumbotron" style="height: 1400px">
+            <div class="jumbotron">
+                <h1 class="display-4 font-text text-center">Giỏ hàng</h1>
+                <!-- Hiển thị hàng trong giỏ -->
+                <div class = "bg-jumbotron d-flex flex-wrap justify-content-around">
+                    {% for product in order_product %}
+                        <div class="bg-dark card text-light my-3" style="height: 440px; width: 15rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                            <img class="card-img-top border border-secondary" style="height: 230px" src="{{ product.image }}" alt="Card image cap">
+                            <div class="card-body bg-jumbotron border border-secondary">
+                                <h5 class="card-title font-text text-dark" style="font-size: 90%">{{ product.name }}</h5>
+                                <P class="card-text font-text text-dark" style="font-size: 70%">Loại: {{ product.product_type }}</P>
+                                <p class="card-text font-text text-dark" style="font-size: 70%">Thương hiệu: {{ product.place }}</p>
+                                <p class="card-text font-text text-dark" style="font-size: 70%">Giá: {{ product.price }}$</p>
+                                <div class="d-flex flex-wrap justify-content-around">
+                                    <a href="{{ url_for('detail', product_id=product.id) }}" class="btn btn-sm btn-dark font-text" style="font-size: 70%">Xem chi tiết</a>
+                                    <a href="{{ url_for('delete_product', product_id=product.id) }}" class="btn btn-sm btn-dark font-text" style="font-size: 70%">Xóa khỏi giỏ hàng</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <hr class="my-4">
+                <div class="d-flex justify-content-center">
+                    <div class="border border-dark border-5 rounded px-5 py-5 w-50">
+                        <div>
+                            <p class="font-text">Tổng sản phẩm: {{ cart.order_fee }}$</p>
+                            <p class="font-text">Chi phí vận chuyển: {{ cart.ship_fee }}$</p>
+                            <p class="font-text">Tổng đơn hàng: {{ cart.order_fee + cart.ship_fee }}$</p>
+                            <p class="font-text">Địa chỉ nhận hàng: {{ cart.address }}</p>
+                            <p class="font-text">Thời gian yêu cầu: {{ cart.request_time if cart.request_time else 'Giao hàng bất cứ lúc nào'}}</p>
+                        </div>
+                        <div class="py-3">
+                            <form method = 'POST'>
+                                <label class="font-text">Yêu cầu thời gian nhận hàng (Nếu để trống, bạn có thể nhận hàng bất cứ lúc nào)</label>
+                                <input type="datetime-local" name = 'request_time'>
+                                <button type="submit" class="btn btn-primary btn-sm font-text">Cập nhật</button>
+                            </form>
+                        </div>
+                        <div>
+                            <a href="{{ url_for('update_address') }}" class="btn btn-primary font-text" role="button">Sửa lại địa chỉ nhận hàng của đơn này</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container w-25 d-flex justify-content-around pt-4">
+                    <a href="{{ url_for('ordered', order_id=cart.id) }}" class="btn btn-primary btn-lg font-text" role="button">Gửi yêu cầu</a>
+                    <a href="{{ url_for('user') }}" class="btn btn-primary btn-lg font-text" role="button">Trở về</a>
+                </div>
+            </div>
+        </div>
+    {% elif template == 0 %}
+        <div class="bg-dark" style="height: 700px; padding-top: 100px">
+            <h1 class="font-text text-light text-center">Giỏ hàng của bạn chưa có sản phẩm nào</h1>
+            <h1 class="font-text text-light text-center">Hãy quay lại chọn sản phẩm nhé</h1>
+            <div class="d-flex justify-content-center" style="margin-top: 100px">
+                <a href="{{ url_for('user') }}" class="btn btn-primary btn-lg font-text" role="button">Trở về</a>
+            </div>
+        </div>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech Fashion</title>
+
+    {% include 'meta-data.html' %}
+    <!-- Hiển thị chi tiết đơn hàng -->
+</head>
+<body>
+    {% include 'homepage/navigation.html' %}
+    <div class = "bg-jumbotron d-flex flex-column justify-content-center" style="padding-top: 100px; padding-bottom: 30px; padding-left: 100px; padding-right: 100px">
+        <div class="w-50 container border border-secondary rounded mb-5 py-5">
+            <div class="d-flex justify-content-center">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active font-text" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Đơn ngày {{ found_order.order_time.day }}/{{ found_order.order_time.month }}/{{ found_order.order_time.year }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div>
+                        <div class="d-flex justify-content-center py-3">
+                            <h2 class="font-text font-weight-bold">Thông tin khách hàng</h2>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                {% for user in found_user %}
+                                    <p class="font-text">Tên: {{ user.fullname }}</p>
+                                    <p class="font-text">Số điện thoại: {{ user.phone }}</p>
+                                    <p class="font-text">Email: {{ user.email }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div>
+                        <div class="d-flex justify-content-center pt-3">
+                            <h2 class="font-text font-weight-bold">Thông tin sản phẩm</h2>
+                        </div>
+                        <div class = "bg-jumbotron d-flex flex-wrap justify-content-around">
+                            {% for product in order_product %}
+                                <div class="bg-dark card text-light my-3" style="height: 440px; width: 15rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                                    <img class="card-img-top border border-secondary" style="height: 230px" src="{{ product.image }}" alt="Card image cap">
+                                    <div class="card-body bg-jumbotron border border-secondary">
+                                        <h5 class="card-title font-text text-dark" style="font-size: 90%">{{ product.name }}</h5>
+                                        <P class="card-text font-text text-dark" style="font-size: 70%">Loại: {{ product.product_type }}</P>
+                                        <p class="card-text font-text text-dark" style="font-size: 70%">Thương hiệu: {{ product.place }}</p>
+                                        <p class="card-text font-text text-dark" style="font-size: 70%">Giá: {{ product.price }}$</p>
+                                        <div class="d-flex flex-wrap justify-content-around">
+                                            <a href="{{ url_for('detail', product_id=product.id) }}" class="btn btn-sm btn-dark font-text">Xem chi tiết</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div>
+                        <div class="d-flex justify-content-center pt-3">
+                            <h3 class="font-text font-weight-bold">Thông tin đơn hàng</h3>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                <p class="font-text">Tổng sản phẩm: {{ found_order.order_fee }}$</p>
+                                <p class="font-text">Chi phí vận chuyển: {{ found_order.ship_fee }}$</p>
+                                <p class="font-text">Tổng đơn hàng: {{ found_order.order_fee + found_order.ship_fee }}$</p>
+                                <p class="font-text">Tình trạng: {{ found_order.status }}</p>
+                                <p class="font-text">Địa chỉ nhận hàng: {{ found_order.address }}</p>
+                                <p class="font-text">Thời gian yêu cầu: {{ found_order.request_time if found_order.request_time else 'Giao hàng bất cứ lúc nào'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% if found_order.status == "Shipper chưa nhận đơn" %}
+                    <div class="d-flex justify-content-center pt-3">
+                        <a href="{{ url_for('shipper_accepted_order', order_id = found_order.id) }}" class="btn btn-primary btn-lg font-text" role="button">Nhận đơn</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% if found_order.status == "User đã nhận hàng" %}
+            <div class="d-flex justify-content-center pt-3">
+                <a href="{{ url_for('shipped_history') }}" class="btn btn-primary btn-lg font-text" role="button">Trở về</a>
+            </div>
+        {% elif found_order.status == "Shipper chưa nhận đơn" %}
+            <div class="d-flex justify-content-center pt-3">
+                <a href="{{ url_for('ship_request') }}" class="btn btn-primary btn-lg font-text" role="button">Trở về</a>
+            </div>
+        {% elif found_order.status == "Shipper đã nhận hàng, bắt đầu tiến hành vận chuyển" %}
+            <div>
+                <a href="{{ url_for('ship_status', status='Shipper đã nhận hàng, bắt đầu tiến hành vận chuyển') }}" class="btn btn-primary btn-lg font-text" role="button">Trở về</a>
+            </div>
+        {% elif found_order.status == "Shipper đã nhận đơn, đang tiến hành lấy hàng" %}
+            <div class="d-flex justify-content-center pt-3">
+                <a href="{{ url_for('ship_status', status='Shipper đã nhận đơn, đang tiến hành lấy hàng') }}" class="btn btn-primary btn-lg font-text" role="button">Trở về</a>
+            </div>
+        {% endif %}
+</body>
+</html>

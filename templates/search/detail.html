@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech Fashion</title>
+
+    {% include 'meta-data.html' %}
+    <!-- Trang thông tin chi tiết của một sản phẩm -->
+</head>
+<body>
+    {% include 'homepage/navigation.html' %}
+    <div class="bg-jumbotron d-flex justify-content-center">
+        <div class="jumbotron w-50">
+            <div class="border border-dark border-5 rounded px-5 py-5" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                <div style="background-image: url('{{ detail_product.image }}'); background-size: contain; background-repeat: no-repeat; height: 300px"></div>
+                <div class="py-5">
+                    <h1 class="display-4 font-text">{{ detail_product.name }}</h1>
+                    <p class="lead font-text">Thương hiệu: {{ detail_product.place }}</p>
+                    <hr class="my-4">
+                    <p class="font-text">Loại: {{ detail_product.product_type }}</p>
+                    <p class="font-text">Mô tả: {{ detail_product.description }}</p>
+                    <p class="font-text">Giá: {{ detail_product.price }}$</p>
+                    <p class="font-text">Tình trạng: {{ detail_product.status }}</p>
+                </div>
+            </div>
+            <div class="pt-3">
+                {% if session['user-loggedin'] == True %}
+                    <a href="{{ url_for('add_order', product_id=detail_product.id) }}" class="btn btn-dark font-text">Thêm vào giỏ hàng</a>
+                    <a href="{{ url_for('cart') }}" class="btn btn-dark btn-sm font-text" role="button">Kiểm tra Giỏ hàng</a>
+                    <a href="{{ url_for('order_status') }}" class="btn btn-dark btn-sm font-text" role="button">Quản lý Đơn hàng</a>
+                {% endif %}
+                {% if session['search'] %}
+                    <a href="{{ url_for('search', search=session['search']) }}" class="btn btn-dark btn-sm font-text" role="button">Trở về trang trước</a>
+                {% else %}
+                    <a href="{{ url_for('index') }}" class="btn btn-dark btn-lg font-text" role="button">Trở về trang chủ</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="bg-dark text-center text-light font-text" style="height: 50px; padding-top: 15px;">Sản phẩm Project 3</div>
+</body>
+</html>
